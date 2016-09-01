@@ -1,8 +1,10 @@
 {
-	"autoload":{
-		"psr-4":{
-			"CloudBox\\":"src/app/CloudBox"
-		}
-		
-	}
+  "autoload": {
+    "psr-4": {
+      "CloudBox\\": "src/app/CloudBox"
+    }
+  },
+  "require": {
+    "php-opencloud/openstack": "2.0.4"
+  }
 }
