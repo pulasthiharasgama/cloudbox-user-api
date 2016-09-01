@@ -46,6 +46,7 @@ fabric.properties
 .idea/modules.xml
 
 .idea/typescript-compiler.xml
+.idea/
 
 #Composer
 composer.phar
