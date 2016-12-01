@@ -8,10 +8,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        $session_data = [
-            'username' => 'mirage',
-//            'menu_items' => array("Overview", "My Apps", "Admin Apps", "Users"),
-            'menu_items' => [
+        $user = session('username');
+        if (!isset($user)) {
+            return redirect('/login');
+        }
+        $menu_items = [];
+        if (session('type') == 1) {
+            $menu_items = [
                 [
                     'name' => 'Overview',
                     'url' => '/dashboard/overview'
@@ -28,8 +31,23 @@ class HomeController extends Controller
                     'name' => 'Users',
                     'url' => '/dashboard/users'
                 ]
-            ]
+            ];
+        } elseif (session('type') == 2) {
+            $menu_items = [
+                [
+                    'name' => 'Overview',
+                    'url' => '/dashboard/overview'
+                ],
+                [
+                    'name' => 'My Apps',
+                    'url' => '/dashboard/apps/user'
+                ]
+            ];
+        }
 
+        $session_data = [
+            'username' => session('username'),
+            'menu_items' => $menu_items
         ];
         return view('index', compact('session_data'));
     }

@@ -13,6 +13,12 @@
 
 Route::get('/', ['uses' => 'HomeController@index']);
 
+Route::get('/login',['uses' => 'AuthController@login']);
+
+Route::post('/login',['uses' => 'AuthController@auth']);
+
+Route::get('/logout',['uses' => 'AuthController@logout']);
+
 Route::get('/dashboard/overview', ['uses' => 'DashboardController@overview']);
 
 Route::get('/dashboard/apps/user', ['uses' => 'DashboardController@appsUser']);

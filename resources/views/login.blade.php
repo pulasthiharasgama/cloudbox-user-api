@@ -1,20 +1,3 @@
-<?php
-session_start();
-require_once('validate_user.php');
-if (isset($_SESSION['username'])) {
-    header("location:index.php");
-    die();
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $is_success = validate_user($_POST['username'], $_POST['password']);
-    if ($is_success == true) {
-        header("location:index.php");
-        die();
-    } else {
-        $error = true;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +24,7 @@ if (isset($_SESSION['username'])) {
         <div class="col-md-4 main">
             <h1 class="text-center">CloudBox</h1>
             <div class="well bs-component shadow-well">
-                <form class="form-horizontal" method="POST" action="login.php">
+                <form class="form-horizontal" method="POST" action="{{url('login')}}">
                     <fieldset>
                         <legend>User Login</legend>
                         <div class="form-group">
@@ -66,17 +49,17 @@ if (isset($_SESSION['username'])) {
                         </div>
                         <?php
                         if (isset($error) && $error == true) {
-                            ?>
-                            <div class="alert alert-dismissible alert-danger">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong> Username or Password is incorrect</strong>
-                            </div>
-                            <?php
+                        ?>
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong> Username or Password is incorrect</strong>
+                        </div>
+                        <?php
                         }
                         ?>
 
                     </fieldset>
-
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 </form>
             </div>
         </div>
