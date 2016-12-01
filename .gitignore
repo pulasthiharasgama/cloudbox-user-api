@@ -52,3 +52,9 @@ fabric.properties
 composer.phar
 composer.lock
 /vendor/
+
+/node_modules
+/public/storage
+Homestead.json
+Homestead.yaml
+.env
