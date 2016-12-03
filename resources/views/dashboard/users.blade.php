@@ -5,15 +5,13 @@
             <div class="panel-body">
                 <div class="list-group">
 
-
-                    @foreach ($all_users as &$user)
+                    @foreach ($all_users as $user)
                         <div class="list-group-item">
                             <h4 class="list-group-item-heading">{{ $user->full_name }}</h4>
                             <p class="list-group-item-text">{{ $user->position }}</p>
-                            <a href="#" class="btn btn-primary app-action-btn">Manage</a>
+                            <a data-key="{{$user->id}}" href="#" class="btn btn-primary app-action-btn">Manage</a>
                         </div>
                     @endforeach
-
 
                 </div>
             </div>

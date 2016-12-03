@@ -47,6 +47,7 @@ class HomeController extends Controller
 
         $session_data = [
             'username' => session('username'),
+            'full_name' => session('full_name'),
             'menu_items' => $menu_items
         ];
         return view('index', compact('session_data'));

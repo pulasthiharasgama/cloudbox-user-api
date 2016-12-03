@@ -47,19 +47,14 @@
                                 <button type="submit" class="btn btn-primary" name="_submit">Login</button>
                             </div>
                         </div>
-                        <?php
-                        if (isset($error) && $error == true) {
-                        ?>
-                        <div class="alert alert-dismissible alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong> Username or Password is incorrect</strong>
-                        </div>
-                        <?php
-                        }
-                        ?>
-
+                        @if (isset($error) && $error == true)
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong> Username or Password is incorrect</strong>
+                            </div>
+                        @endif
                     </fieldset>
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 </form>
             </div>
         </div>
