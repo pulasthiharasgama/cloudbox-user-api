@@ -4,12 +4,17 @@
             <div class="panel-heading">Admin Apps</div>
             <div class="panel-body">
                 <div class="list-group">
-                    @foreach ($all_admin_apps as $admin_app)
+                    @foreach ($available_admin_apps as $admin_app)
                         <div class="list-group-item">
                             <h4 class="list-group-item-heading">{{ $admin_app->name }}</h4>
                             <p class="list-group-item-text">{{ $admin_app->description }}</p>
-                            <a id="{{ $admin_app->id }}" href="#"
-                               class="btn btn-primary app-action-btn">Launch</a>
+                            @if($admin_app-> launched == 1)
+                                <a href="http://{{ $admin_app->ipv4 }}"
+                                   class="btn btn-success app-action-btn" target="_blank">GoTo</a>
+                            @elseif($admin_app-> launched == 0)
+                                <a data-key="{{ $admin_app->id }}" href="#"
+                                   class="btn btn-success app-action-btn">Launch</a>
+                            @endif
                         </div>
                     @endforeach
 

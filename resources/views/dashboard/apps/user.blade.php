@@ -5,24 +5,19 @@
             <div class="panel-body">
                 <div class="list-group">
 
-
-                    @if (!$is_wordpress_launched)
-                        @foreach ($all_user_apps as $user_app)
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">{{ $user_app->name }}</h4>
-                                <p class="list-group-item-text">{{ $user_app->description }}</p>
-                                <a id="{{ $user_app->id }}" href="#"
-                                   class="btn btn-success app-action-btn">Launch</a>
-                            </div>
-                        @endforeach
-                    @else
+                    @foreach ($available_user_apps as $user_app)
                         <div class="list-group-item">
-                            <h4 class="list-group-item-heading">{{ $my_wordpress->name }}</h4>
-                            <p class="list-group-item-text">{{ $my_wordpress->description }}</p>
-                            <a href="http://{{ $my_wordpress->ipv4 }}"
-                               class="btn btn-success app-action-btn" target="_blank">GoTo</a>
+                            <h4 class="list-group-item-heading">{{ $user_app->name }}</h4>
+                            <p class="list-group-item-text">{{ $user_app->description }}</p>
+                            @if($user_app-> launched == 1)
+                                <a href="http://{{ $user_app->ipv4 }}"
+                                   class="btn btn-success app-action-btn" target="_blank">GoTo</a>
+                            @elseif($user_app-> launched == 0)
+                                <a data-key="{{ $user_app->id }}" href="#"
+                                   class="btn btn-success app-action-btn">Launch</a>
+                            @endif
                         </div>
-                    @endif
+                    @endforeach
 
                 </div>
             </div>

@@ -31,7 +31,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id="navbar-user"> {{$session_data['username']}}</a></li>
+                <li><a href="#" id="navbar-user"> {{$session_data['full_name']}}</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="{{url('logout')}}">Logout</a></li>
