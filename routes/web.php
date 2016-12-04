@@ -27,6 +27,11 @@ Route::get('/dashboard/apps/admin', ['uses' => 'DashboardController@appsAdmin'])
 
 Route::get('/dashboard/users', ['uses' => 'DashboardController@users']);
 
+Route::post('/users/add', ['uses' => 'UserController@addUser']);
+
+Route::get('/users/get/{id}', ['uses' => 'UserController@getUser']);
+
+Route::post('/users/update/', ['uses' => 'UserController@updateUser']);
 
 Route::get('/wel', function () {
     return view('welcome');
