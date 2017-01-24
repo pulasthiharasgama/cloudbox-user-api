@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-
 class DashboardController extends Controller
 {
     public function overview()
     {
 
-        $all_running_apps = DB::table('user_app')->where('launched', 1)->whereNotNull('ipv4')->get();
+        $all_running_apps = \DB::table('user_app')->where('launched', 1)->whereNotNull('ipv4')->get();
 
         if ($all_running_apps->count() == 0) {
             $all_running_apps = [];
@@ -21,13 +19,13 @@ class DashboardController extends Controller
     public function appsUser()
     {
 
-        $all_user_apps = DB::table('user_app')
+        $all_user_apps = \DB::table('user_app')
             ->where(['user_id' => session('id'), 'has_permission' => 1])
             ->get();
 
         $available_user_apps = [];
         foreach ($all_user_apps as $user_app) {
-            $app_data = DB::table('app')->where('id', $user_app->app_id)->first();
+            $app_data = \DB::table('app')->where('id', $user_app->app_id)->first();
             if ($app_data->app_type == 2) {
                 if (!isset($user_app->name)) {
                     $user_app->name = session('full_name') . '\'s ' . $app_data->name;
@@ -45,13 +43,13 @@ class DashboardController extends Controller
 
     public function appsAdmin()
     {
-        $all_user_apps = DB::table('user_app')
+        $all_user_apps = \DB::table('user_app')
             ->where(['user_id' => session('id'), 'has_permission' => 1])
             ->get();
 
         $available_admin_apps = [];
         foreach ($all_user_apps as $admin_app) {
-            $app_data = DB::table('app')->where('id', $admin_app->app_id)->first();
+            $app_data = \DB::table('app')->where('id', $admin_app->app_id)->first();
             if ($app_data->app_type == 1) {
                 if (!isset($admin_app->name)) {
                     $admin_app->name = $app_data->name;
@@ -69,7 +67,7 @@ class DashboardController extends Controller
 
     public function users()
     {
-        $all_users = DB::table('user') -> get();
+        $all_users = \DB::table('user') -> get();
 
         return view('dashboard.users', ['all_users' => $all_users]);
     }
