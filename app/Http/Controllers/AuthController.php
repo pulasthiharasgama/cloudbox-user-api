@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -22,7 +21,7 @@ class AuthController extends Controller
         if($request->isMethod('POST')){
             $userName = $request->input('username');
             $password = $request->input('password');
-            $user = DB::table('user')->where('username', $userName)->first();
+            $user = \DB::table('user')->where('username', $userName)->first();
             $is_success = false;
             if(isset($user) && $user->password == $password){
                 session(['username' => $user->username]);
